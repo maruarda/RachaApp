@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="primary_dark">#6C74BF</color>
+
+    <color name="secondary_purple">#b990d6</color>
+
+    <color name="bg_screen">#D3CCF4</color>
+
+    <color name="white_replacement">#E3E0F8</color>
+
+    <color name="avatar_bg">#f5cfe9</color>
+
+    <color name="text_primary">#3E3759</color> <color name="text_secondary">#809bc4</color>
+</resources>
