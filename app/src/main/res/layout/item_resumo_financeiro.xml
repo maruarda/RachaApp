@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:paddingVertical="12dp"
+    android:gravity="center_vertical">
+
+    <!-- Foto (Opcional, mas fica bonito) -->
+    <ImageView
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:background="@drawable/bg_circle_avatar"/>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_marginStart="12dp"
+        android:orientation="vertical">
+
+        <!-- Nome da Pessoa -->
+        <TextView
+            android:id="@+id/tvResumoPessoa"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Maria"
+            android:textColor="@color/text_primary"
+            android:fontFamily="sans-serif-medium"
+            android:textSize="16sp"
+            android:textStyle="bold"/>
+
+        <!-- Nome do Racha -->
+        <TextView
+            android:id="@+id/tvResumoRacha"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Referente a: Churrasco"
+            android:textColor="@color/text_secondary"
+            android:textSize="12sp"/>
+    </LinearLayout>
+
+    <!-- Valor -->
+    <TextView
+        android:id="@+id/tvResumoValor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="R$ 30,00"
+        android:textColor="@color/primary_dark"
+        android:fontFamily="sans-serif-medium"
+        android:textStyle="bold"
+        android:textSize="16sp"/>
+
+</LinearLayout>

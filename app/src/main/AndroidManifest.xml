@@ -25,6 +25,7 @@
         </activity>
 
         <activity android:name=".RachaDetailActivity" />
+        <activity android:name=".ResumoFinanceiroActivity" />
 
     </application>
 
