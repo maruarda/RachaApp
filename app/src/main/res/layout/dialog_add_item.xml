@@ -31,11 +31,12 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="2"
-            android:hint="Ex: Cerveja"
-            android:textColorHint="@color/text_secondary"
-            android:textColor="@color/text_primary"
             android:backgroundTint="@color/primary_dark"
-            android:inputType="textCapSentences" />
+            android:hint="Ex: Cerveja"
+            android:inputType="textCapSentences"
+            android:textColor="@color/text_primary"
+            android:textColorHint="@color/text_secondary"
+            tools:ignore="TouchTargetSizeCheck" />
 
         <Space
             android:layout_width="16dp"
@@ -46,11 +47,12 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:hint="R$ 0,00"
-            android:textColorHint="@color/text_secondary"
-            android:textColor="@color/text_primary"
             android:backgroundTint="@color/primary_dark"
-            android:inputType="numberDecimal" />
+            android:hint="R$ 0,00"
+            android:inputType="numberDecimal"
+            android:textColor="@color/text_primary"
+            android:textColorHint="@color/text_secondary"
+            tools:ignore="TouchTargetSizeCheck" />
     </LinearLayout>
 
     <TextView

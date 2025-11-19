@@ -55,4 +55,17 @@
         tools:layout_editor_absoluteY="-1dp"
         tools:text="Ana" />
 
+    <ImageView
+        android:id="@+id/imgPagoIcon"
+        android:layout_width="57dp"
+        android:layout_height="42dp"
+        android:layout_marginEnd="16dp"
+        android:src="@drawable/ic_star_paid"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@drawable/ic_star_paid"
+        tools:visibility="visible" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
