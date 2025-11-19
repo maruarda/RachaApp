@@ -50,25 +50,27 @@
             </LinearLayout>
         </LinearLayout>
 
-        <!-- BLOCO 1: A RECEBER -->
+        <!-- BLOCO 1: A RECEBER (VERDE) -->
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#4F15492D"
+            android:background="@drawable/bg_card_receber"
             android:padding="20dp"
-            android:elevation="4dp"
+            android:elevation="0dp"
             android:layout_marginBottom="20dp">
+            <!-- Usei o drawable criado acima -->
 
             <TextView
                 android:id="@+id/lblReceber"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="A Receber"
-                android:textColor="@color/primary_dark"
-                android:textSize="18sp"
+                android:textColor="#15492D"
+                android:textSize="20sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"/>
+            <!-- Mudei a cor do título para um verde escuro sólido para ler melhor -->
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvReceber"
@@ -84,7 +86,7 @@
                 android:id="@+id/dividerRec"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="#E0E0E0"
+                android:background="#8015492D"
                 android:layout_marginTop="12dp"
                 app:layout_constraintTop_toBottomOf="@id/rvReceber"/>
 
@@ -93,9 +95,11 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
                 android:text="Total:"
-                android:textColor="@color/text_secondary"
+                android:textStyle="bold"
+                android:textColor="#15492D"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/dividerRec"/>
+            <!-- Mudei para verde escuro sólido -->
 
             <TextView
                 android:id="@+id/tvTotalReceber"
@@ -103,33 +107,34 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
                 android:text="R$ 0,00"
-                android:textColor="@color/primary_dark"
+                android:textColor="#15492D"
                 android:textStyle="bold"
-                android:textSize="18sp"
+                android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/dividerRec"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <!-- BLOCO 2: A PAGAR -->
+        <!-- BLOCO 2: A PAGAR (VERMELHO) -->
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#27FA1818"
+            android:background="@drawable/bg_card_pagar"
             android:padding="20dp"
-            android:elevation="4dp">
+            android:elevation="0dp">
+            <!-- Usei o drawable vermelho criado acima -->
 
             <TextView
                 android:id="@+id/lblPagar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="A Pagar"
-                android:textColor="@color/text_primary"
-                android:textSize="18sp"
+                android:textColor="#B71C1C"
+                android:textSize="20sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"/>
-            <!-- Usei secondary_purple pra diferenciar visualmente -->
+            <!-- Cor Vermelho Escuro Sólido -->
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvPagar"
@@ -145,7 +150,7 @@
                 android:id="@+id/dividerPag"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="#E0E0E0"
+                android:background="#80B71C1C"
                 android:layout_marginTop="12dp"
                 app:layout_constraintTop_toBottomOf="@id/rvPagar"/>
 
@@ -154,7 +159,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
                 android:text="Total:"
-                android:textColor="@color/text_secondary"
+                android:textStyle="bold"
+                android:textColor="#B71C1C"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/dividerPag"/>
 
@@ -164,9 +170,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
                 android:text="R$ 0,00"
-                android:textColor="@color/secondary_purple"
+                android:textColor="#B71C1C"
                 android:textStyle="bold"
-                android:textSize="18sp"
+                android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/dividerPag"/>
 

@@ -19,31 +19,40 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"/>
 
-    <TextView
-        android:id="@+id/tvNomeAmigo"
+    <!-- BLOCO DE TEXTO AO LADO DO AVATAR -->
+    <LinearLayout
+        android:id="@+id/linearText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        tools:text="Ana"
-        android:textSize="18sp"
-        android:fontFamily="sans-serif-medium"
-        android:textColor="@color/text_primary"
         android:layout_marginStart="16dp"
+        android:orientation="vertical"
         app:layout_constraintStart_toEndOf="@id/imgAvatar"
         app:layout_constraintTop_toTopOf="@id/imgAvatar"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintBottom_toBottomOf="@id/imgAvatar"
+        app:layout_constraintEnd_toEndOf="parent">
+
+    </LinearLayout>
 
     <TextView
         android:id="@+id/tvValorPagar"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:text="R$ 30,00"
-        android:textSize="14sp"
-        android:fontFamily="sans-serif-medium"
+        android:fontFamily="sans-serif"
         android:textColor="@color/primary_dark"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="4dp"
-        app:layout_constraintStart_toEndOf="@id/imgAvatar"
-        app:layout_constraintTop_toBottomOf="@id/tvNomeAmigo"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        android:textSize="14sp"
+        tools:layout_editor_absoluteX="66dp"
+        tools:layout_editor_absoluteY="23dp"
+        tools:text="R$ 30,00" />
+
+    <TextView
+        android:id="@+id/tvNomeAmigo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-medium"
+        android:textColor="@color/text_primary"
+        android:textSize="18sp"
+        tools:layout_editor_absoluteX="66dp"
+        tools:layout_editor_absoluteY="-1dp"
+        tools:text="Ana" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
