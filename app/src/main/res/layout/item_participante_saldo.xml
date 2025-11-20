@@ -38,7 +38,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif"
-        android:textColor="@color/primary_dark"
+        android:textColor="@color/text_primary"
         android:textSize="14sp"
         tools:layout_editor_absoluteX="66dp"
         tools:layout_editor_absoluteY="23dp"

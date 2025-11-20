@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bar_background"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="24dp"
+        android:gravity="center_horizontal">
+
+        <!-- Título da Tela -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Criar Conta"
+            android:textColor="@color/text_primary"
+            android:textSize="28sp"
+            android:textStyle="bold"
+            android:layout_marginTop="40dp"
+            android:layout_marginBottom="40dp"/>
+
+        <!-- Instrução -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Escolha seu avatar"
+            android:textColor="@color/text_secondary"
+            android:layout_marginBottom="16dp"/>
+
+        <!-- Lista de Avatares (Horizontal) -->
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="none"
+            android:layout_marginBottom="32dp">
+
+            <LinearLayout
+                android:id="@+id/containerAvatares"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="4dp"> <!-- Padding para a borda não ser cortada -->
+
+                <!-- AVATAR 1 (Usando CardView Nativo) -->
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardAvatar1"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_marginEnd="16dp"
+                    app:cardCornerRadius="40dp"
+                    app:cardElevation="0dp"
+                    app:cardBackgroundColor="@android:color/transparent">
+                    <!-- cardCornerRadius = Metade de 80dp = 40dp (Círculo Perfeito) -->
+
+                    <ImageView
+                        android:id="@+id/imgAvatar1"
+                        android:tag="1"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/avatar_1"
+                        android:scaleType="centerCrop"/>
+                    <!-- centerCrop garante que a imagem preencha o círculo sem distorcer -->
+                </androidx.cardview.widget.CardView>
+
+                <!-- AVATAR 2 -->
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardAvatar2"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_marginEnd="16dp"
+                    app:cardCornerRadius="40dp"
+                    app:cardElevation="0dp"
+                    app:cardBackgroundColor="@android:color/transparent">
+
+                    <ImageView
+                        android:id="@+id/imgAvatar2"
+                        android:tag="2"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/avatar_2"
+                        android:scaleType="centerCrop"/>
+                </androidx.cardview.widget.CardView>
+
+                <!-- Você pode copiar e colar mais blocos CardView para mais avatares -->
+
+            </LinearLayout>
+        </HorizontalScrollView>
+
+        <!-- Campos de Texto -->
+        <EditText
+            android:id="@+id/etNomeCompleto"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/bg_card_rounded"
+            android:hint="Nome Completo"
+            android:paddingStart="20dp"
+            android:textColor="@color/text_primary"
+            android:textColorHint="@color/text_secondary"/>
+
+        <EditText
+            android:id="@+id/etUsuarioCadastro"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/bg_card_rounded"
+            android:hint="Nome de Usuário"
+            android:paddingStart="20dp"
+            android:textColor="@color/text_primary"
+            android:textColorHint="@color/text_secondary"/>
+
+        <EditText
+            android:id="@+id/etSenhaCadastro"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_marginBottom="40dp"
+            android:background="@drawable/bg_card_rounded"
+            android:hint="Senha"
+            android:inputType="textPassword"
+            android:paddingStart="20dp"
+            android:textColor="@color/text_primary"
+            android:textColorHint="@color/text_secondary"/>
+
+        <!-- Botão Cadastrar -->
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnFinalizarCadastro"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:background="@drawable/bg_button_rounded"
+            android:text="Cadastrar"
+            android:textColor="@color/bar_background"
+            android:textStyle="bold"
+            android:textSize="18sp"/>
+
+    </LinearLayout>
+</ScrollView>

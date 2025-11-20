@@ -1,14 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="primary_dark">#6C74BF</color>
+    <!-- Cores Principais (Boteco Theme) -->
+    <color name="boteco_red">#CDD9382C</color>       <!-- Botões principais, acentos -->
+    <color name="pilsen_yellow">#BAF2C849</color>    <!-- Detalhes, destaques -->
+    <color name="antarctica_blue">#AD1E5AA8</color>  <!-- Secundário, ícones, tabs -->
 
-    <color name="secondary_purple">#b990d6</color>
+    <!-- Fundo / Interface -->
+    <color name="bar_background">#FBE9C2</color>     <!-- Fundo da tela (creme/bege) -->
+    <color name="beer_brown">#C35A3A22</color>       <!-- Cards, menus, rodapés -->
+    <color name="sun_orange">#A6F27A2C</color>       <!-- Ações de destaque -->
 
-    <color name="bg_screen">#D3CCF4</color>
+    <!-- Texto -->
+    <color name="text_primary">#B72B2B2B</color>     <!-- Textos principais (quase preto) -->
+    <color name="text_secondary">#BC5C5C5C</color>   <!-- Textos menores -->
 
-    <color name="white_replacement">#E3E0F8</color>
-
-    <color name="avatar_bg">#f5cfe9</color>
-
-    <color name="text_primary">#3E3759</color> <color name="text_secondary">#809bc4</color>
+    <!-- Cores Funcionais (Mantidas/Adaptadas para o novo tema) -->
+    <color name="white">#FFFFFF</color>
+    <color name="white_replacement">#F4D38B</color>  <!-- Branco agora é o creme do bar -->
+    <color name="green_paid">#4CAF50</color>         <!-- Para indicar pagamento (verde garrafa) -->
 </resources>

@@ -22,48 +22,59 @@ import java.util.List;
 
 public class RachaDetailActivity extends AppCompatActivity {
 
-    // Lista de amigos (Dados falsos para teste)
+    // Lista de amigos (Dados na memória)
     private List<Participante> listaAmigos = new ArrayList<>();
+
+    // Adaptador da lista principal (para podermos notificar mudanças se precisar)
+    private ParticipantesAdapter adapterPrincipal;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_racha_detail);
 
-        // 1. Carregar dados iniciais (Maria, José, Ana)
+        // 1. Carregar dados iniciais (Falsos para teste)
         carregarDadosFalsosComItens();
 
-        // 2. Configurar Botão de Adicionar Novo Item (Abre o Pop-up de divisão)
+        // 2. Configurar a Lista Principal (RecyclerView)
+        RecyclerView rvPrincipal = findViewById(R.id.rvDetalhesParticipantes);
+        rvPrincipal.setLayoutManager(new LinearLayoutManager(this));
+
+        // Inicializar o Adapter Principal
+        // O segundo parâmetro é o "Listener" do clique (o que acontece quando clica num item)
+        adapterPrincipal = new ParticipantesAdapter(listaAmigos, participanteClicado -> {
+            mostrarDetalhesParticipante(participanteClicado);
+        });
+
+        rvPrincipal.setAdapter(adapterPrincipal);
+
+        // 3. Configurar Botão de Adicionar Novo Item (Abre o Pop-up de divisão)
         Button btnAdd = findViewById(R.id.btnAdicionarItem);
         btnAdd.setOnClickListener(v -> mostrarPopupDivisao());
-
-        // 3. Configurar RecyclerView Principal (Lista de Amigos e seus totais)
-        // TODO: Aqui você deve configurar o Adapter da lista principal (rvDetalhesParticipantes).
-        // Quando criar esse Adapter, no evento de clique (onClick) do item, chame:
-        // mostrarDetalhesParticipante(participanteClicado);
-
-        // Exemplo de teste rápido: Se quiser testar o pop-up de detalhes agora,
-        // descomente a linha abaixo para abrir o da Maria ao iniciar a tela.
-        // mostrarDetalhesParticipante(listaAmigos.get(0));
     }
 
     // --- DADOS FALSOS PARA TESTE ---
     private void carregarDadosFalsosComItens() {
-        // Cria Maria e adiciona dívidas
+        // Maria: Apenas deve (Sem estrela)
         Participante maria = new Participante("Maria");
         maria.adicionarDivida("Carne", 30.00);
         maria.adicionarDivida("Cerveja", 30.00);
+        maria.setPagante(false);
 
-        // Cria José e adiciona dívidas
+        // José: Apenas deve (Sem estrela)
         Participante jose = new Participante("José");
         jose.adicionarDivida("Carne", 30.00);
         jose.adicionarDivida("Cerveja", 30.00);
+        jose.setPagante(false);
 
-        // Cria Ana (Não bebe, só come)
+        // Ana: PAGOU A CONTA! (Com estrela)
         Participante ana = new Participante("Ana");
-        ana.adicionarDivida("Carne", 30.00);
+        ana.adicionarDivida("Total do Churrasco", 150.00);
+        // Como ela pagou, o "valor a pagar" dela na verdade seria o saldo positivo ou 0,
+        // mas para este exemplo visual, vamos deixar o valor total que ela assumiu.
+        ana.setPagante(true); // <--- ISSO ATIVA A ESTRELA NO LAYOUT
 
-        // Adiciona todos à lista do Racha
+        // Adiciona à lista
         listaAmigos.add(maria);
         listaAmigos.add(jose);
         listaAmigos.add(ana);
@@ -114,9 +125,10 @@ public class RachaDetailActivity extends AppCompatActivity {
 
         // Botão Confirmar
         btnConfirmar.setOnClickListener(v -> {
-            // Aqui entraria a lógica para salvar o item na lista de cada um
             Toast.makeText(this, "Item adicionado com sucesso!", Toast.LENGTH_SHORT).show();
             dialog.dismiss();
+            // Aqui você poderia chamar um método para atualizar a lista principal
+            // adapterPrincipal.notifyDataSetChanged();
         });
 
         dialog.show();
@@ -148,7 +160,7 @@ public class RachaDetailActivity extends AppCompatActivity {
         }
     }
 
-    // --- POP-UP 2: VER DETALHES DO PARTICIPANTE (NOVO) ---
+    // --- POP-UP 2: VER DETALHES DO PARTICIPANTE (Ao clicar na lista principal) ---
     public void mostrarDetalhesParticipante(Participante p) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
 

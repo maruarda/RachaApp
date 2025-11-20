@@ -1,16 +1,28 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.RachaApp" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
-        <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/purple_200</item>
-        <item name="colorPrimaryVariant">@color/purple_700</item>
-        <item name="colorOnPrimary">@color/black</item>
-        <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/teal_200</item>
-        <item name="colorSecondaryVariant">@color/teal_200</item>
-        <item name="colorOnSecondary">@color/black</item>
-        <!-- Status bar color. -->
-        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
-        <!-- Customize your theme here. -->
+    <style name="Theme.RachaApp" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+
+        <!-- Primary brand color (Botões, Cursor, Títulos Ativos) -->
+        <item name="colorPrimary">@color/boteco_red</item>
+        <item name="colorPrimaryVariant">@color/beer_brown</item>
+        <item name="colorOnPrimary">@color/bar_background</item> <!-- Texto no botão primário -->
+
+        <!-- Secondary brand color (Botões Flutuantes, Seleção) -->
+        <item name="colorSecondary">@color/pilsen_yellow</item>
+        <item name="colorSecondaryVariant">@color/sun_orange</item>
+        <item name="colorOnSecondary">@color/text_primary</item>
+
+        <!-- Status bar color (Barra de bateria/hora lá em cima) -->
+        <item name="android:statusBarColor">@color/beer_brown</item>
+
+        <!-- Background padrão das telas -->
+        <item name="android:windowBackground">@color/bar_background</item>
+
+        <!-- Cores de Texto Padrão -->
+        <item name="android:textColorPrimary">@color/text_primary</item>
+        <item name="android:textColorSecondary">@color/text_secondary</item>
+
+        <!-- Fonte -->
+        <item name="android:fontFamily">sans-serif-medium</item>
     </style>
 </resources>

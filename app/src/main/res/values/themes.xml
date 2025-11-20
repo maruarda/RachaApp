@@ -1,16 +1,28 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
     <style name="Theme.RachaApp" parent="Theme.MaterialComponents.DayNight.NoActionBar">
 
-        <item name="colorPrimary">@color/primary_dark</item>
-        <item name="colorPrimaryVariant">@color/primary_dark</item>
-        <item name="colorOnPrimary">@color/white_replacement</item>
+        <!-- Primary brand color (Botões, Cursor, Títulos Ativos) -->
+        <item name="colorPrimary">@color/boteco_red</item>
+        <item name="colorPrimaryVariant">@color/beer_brown</item>
+        <item name="colorOnPrimary">@color/bar_background</item> <!-- Texto no botão primário -->
 
-        <item name="colorSecondary">@color/secondary_purple</item>
-        <item name="colorSecondaryVariant">@color/secondary_purple</item>
-        <item name="colorOnSecondary">@color/primary_dark</item>
+        <!-- Secondary brand color (Botões Flutuantes, Seleção) -->
+        <item name="colorSecondary">@color/pilsen_yellow</item>
+        <item name="colorSecondaryVariant">@color/sun_orange</item>
+        <item name="colorOnSecondary">@color/text_primary</item>
 
-        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
+        <!-- Status bar color (Barra de bateria/hora lá em cima) -->
+        <item name="android:statusBarColor">@color/beer_brown</item>
 
+        <!-- Background padrão das telas -->
+        <item name="android:windowBackground">@color/bar_background</item>
+
+        <!-- Cores de Texto Padrão -->
+        <item name="android:textColorPrimary">@color/text_primary</item>
+        <item name="android:textColorSecondary">@color/text_secondary</item>
+
+        <!-- Fonte -->
         <item name="android:fontFamily">sans-serif-medium</item>
     </style>
 </resources>
