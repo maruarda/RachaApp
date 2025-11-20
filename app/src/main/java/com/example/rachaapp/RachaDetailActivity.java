@@ -136,6 +136,7 @@ public class RachaDetailActivity extends AppCompatActivity {
 
     // Lógica Matemática: (Valor Total) / (Pessoas Selecionadas)
     private void calcularValorTempoReal(String valorTexto, TextView tvOutput, RecyclerView rv) {
+        // CORREÇÃO 1: Verificar se o Adapter existe antes de usar
         ParticipanteDialogAdapter adapter = (ParticipanteDialogAdapter) rv.getAdapter();
         if (adapter == null) return;
 
@@ -143,8 +144,9 @@ public class RachaDetailActivity extends AppCompatActivity {
         double valorTotal = 0.0;
 
         try {
-            if (!valorTexto.isEmpty()) {
-                // Troca vírgula por ponto para evitar erros
+            // CORREÇÃO 2: Verificar se é nulo ANTES de checar se está vazio
+            if (valorTexto != null && !valorTexto.isEmpty()) {
+                // Troca vírgula por ponto para evitar erros de conversão
                 String valorLimpo = valorTexto.replace(",", ".");
                 valorTotal = Double.parseDouble(valorLimpo);
             }

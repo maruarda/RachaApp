@@ -91,6 +91,7 @@
             android:fontFamily="sans-serif-medium"
             android:text="Total a Pagar"
             android:textColor="@color/text_primary"
+            android:background="@color/bar_background"
             android:textSize="18sp"
             android:textStyle="bold" />
 
@@ -102,6 +103,7 @@
             android:text="R$ 60,00"
             android:textColor="@color/text_primary"
             android:textSize="20sp"
+            android:background="@color/bar_background"
             android:textStyle="bold" />
     </LinearLayout>
 

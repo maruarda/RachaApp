@@ -4,7 +4,8 @@
     android:layout_height="wrap_content"
     android:orientation="horizontal"
     android:paddingVertical="8dp"
-    android:paddingHorizontal="4dp">
+    android:paddingHorizontal="4dp"
+    android:background="@color/bar_background">
 
     <!-- Nome do Item (Ex: Carne) -->
     <TextView

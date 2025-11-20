@@ -45,9 +45,12 @@ public class CadastroActivity extends AppCompatActivity {
                     img.setOnClickListener(v -> onAvatarClick(card, img));
 
                     // Opcional: Seleciona o primeiro avatar por padrão ao abrir a tela
+                    // (Remova o if abaixo se quiser que comece sem nenhum selecionado)
+                    /*
                     if (i == 0) {
                         onAvatarClick(card, img);
                     }
+                    */
                 }
             }
         }
@@ -62,17 +65,18 @@ public class CadastroActivity extends AppCompatActivity {
             if (child instanceof CardView) {
                 // Remove o background de borda
                 child.setBackgroundResource(0);
-                // Remove o padding para a imagem voltar ao tamanho normal
+                // Remove o padding para a imagem voltar ao tamanho normal (preencher o círculo)
                 child.setPadding(0,0,0,0);
             }
         }
 
         // 2. Marca o Card selecionado visualmente
-        // Aplica o drawable de borda (bg_avatar_border.xml) como fundo do CardView
-        selectedCard.setBackgroundResource(R.drawable.bg_avatar_border);
+        // Aplica o drawable de borda como fundo do CardView
+        // Certifique-se de que o arquivo 'bg_avatar_selected.xml' existe na pasta drawable
+        selectedCard.setBackgroundResource(R.drawable.bg_avatar_selected);
 
         // Adiciona um pequeno padding para que a borda apareça "em volta" da imagem
-        // (8 pixels de borda interna)
+        // sem ser cortada pelo CardView. (8 pixels de borda interna)
         int padding = 8;
         selectedCard.setPadding(padding, padding, padding, padding);
 
@@ -109,14 +113,12 @@ public class CadastroActivity extends AppCompatActivity {
         }
 
         // SUCESSO!
-        // Aqui você enviaria os dados para o Backend (API REST) no futuro.
-        // Por enquanto, vamos apenas simular e ir para a tela principal.
-
         String mensagem = "Bem-vindo(a), " + nome + "! Conta criada.";
         Toast.makeText(this, mensagem, Toast.LENGTH_LONG).show();
 
-        // Redireciona para a tela de Login ou Principal
-        Intent intent = new Intent(this, LoginActivity.class); // Ou MainActivity.class se quiser logar direto
+        // Redireciona para a tela Principal (ou Login)
+        // Certifique-se de que LoginActivity.class existe. Se quiser ir direto pro app, use RachaDetailActivity.class
+        Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
         finish(); // Fecha a tela de cadastro para não voltar com o botão "Voltar"
     }

@@ -20,34 +20,15 @@
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginTop="10dp"/>
 
-    <TextView
-        android:id="@+id/lblAmigos"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:text="Amigos"
-        android:textColor="@color/text_secondary"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvHeader" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvAmigosMain"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="12dp"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        tools:listitem="@layout/item_amigo_horizontal"
-        app:layout_constraintTop_toBottomOf="@id/lblAmigos"/>
-
+    <!-- LISTA DE RACHAS AGORA LOGO ABAIXO DO TÍTULO -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvRachasMain"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="20dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         tools:listitem="@layout/item_racha_card"
-        app:layout_constraintTop_toBottomOf="@id/rvAmigosMain"
+        app:layout_constraintTop_toBottomOf="@id/tvHeader"
         app:layout_constraintBottom_toBottomOf="parent"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -60,6 +41,6 @@
         android:src="@android:drawable/ic_input_add"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.954"
-        app:layout_constraintStart_toStartOf="parent"
-        app:tint="@color/white_replacement" /> </androidx.constraintlayout.widget.ConstraintLayout>
+        app:tint="@color/white_replacement"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
