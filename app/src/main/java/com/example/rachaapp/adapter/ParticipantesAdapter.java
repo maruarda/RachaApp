@@ -1,4 +1,4 @@
-package com.example.rachaapp;
+package com.example.rachaapp.adapter;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -7,6 +7,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.rachaapp.model.Participante;
+import com.example.rachaapp.R;
+
 import java.util.List;
 
 public class ParticipantesAdapter extends RecyclerView.Adapter<ParticipantesAdapter.ViewHolder> {
