@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="340dp"
+    android:layout_height="500dp"
+    app:cardCornerRadius="16dp"
+    app:cardElevation="8dp"
+    app:cardBackgroundColor="@color/white">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Selecione um Avatar"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="@color/text_primary"
+            android:layout_gravity="center"
+            android:layout_marginBottom="16dp"/>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <!-- Using a simple Wrap-Content layout for the items inside the scroll -->
+            <GridLayout
+                android:id="@+id/gridAvataresDialog"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:columnCount="4"
+                android:alignmentMode="alignMargins"
+                android:layout_gravity="center_horizontal">
+
+                <!-- Avatars 1-4 -->
+                <ImageView android:tag="1" android:src="@drawable/avatar_1" android:layout_width="60dp" android:layout_height="60dp" android:layout_margin="8dp" android:background="@drawable/bg_avatar_selected" android:padding="2dp"/>
+                <ImageView android:tag="2" android:src="@drawable/avatar_2" android:layout_width="60dp" android:layout_height="60dp" android:layout_margin="8dp"/>
+                <ImageView android:tag="3" android:src="@drawable/avatar_3" android:layout_width="60dp" android:layout_height="60dp" android:layout_margin="8dp"/>
+                <ImageView android:tag="4" android:src="@drawable/avatar_4" android:layout_width="60dp" android:layout_height="60dp" android:layout_margin="8dp"/>
+
+                <!-- Avatars 5-8 -->
+                <ImageView android:tag="5" android:src="@drawable/avatar_5" android:layout_width="60dp" android:layout_height="60dp" android:layout_margin="8dp"/>
+                <ImageView android:tag="6" android:src="@drawable/avatar_6" android:layout_width="60dp" android:layout_height="60dp" android:layout_margin="8dp"/>
+                <ImageView android:tag="7" android:src="@drawable/avatar_7" android:layout_width="60dp" android:layout_height="60dp" android:layout_margin="8dp"/>
+                <ImageView android:tag="8" android:src="@drawable/avatar_8" android:layout_width="60dp" android:layout_height="60dp" android:layout_margin="8dp"/>
+
+                <!-- Avatars 9-12 -->
+                <ImageView android:tag="9" android:src="@drawable/avatar_9" android:layout_width="60dp" android:layout_height="60dp" android:layout_margin="8dp"/>
+                <ImageView android:tag="10" android:src="@drawable/avatar_10" android:layout_width="60dp" android:layout_height="60dp" android:layout_margin="8dp"/>
+                <ImageView android:tag="11" android:src="@drawable/avatar_11" android:layout_width="60dp" android:layout_height="60dp" android:layout_margin="8dp"/>
+                <ImageView android:tag="12" android:src="@drawable/avatar_12" android:layout_width="60dp" android:layout_height="60dp" android:layout_margin="8dp"/>
+
+                <!-- Avatars 13-16 -->
+                <ImageView android:tag="13" android:src="@drawable/avatar_13" android:layout_width="60dp" android:layout_height="60dp" android:layout_margin="8dp"/>
+                <ImageView android:tag="14" android:src="@drawable/avatar_14" android:layout_width="60dp" android:layout_height="60dp" android:layout_margin="8dp"/>
+                <ImageView android:tag="15" android:src="@drawable/avatar_15" android:layout_width="60dp" android:layout_height="60dp" android:layout_margin="8dp"/>
+                <ImageView android:tag="16" android:src="@drawable/avatar_16" android:layout_width="60dp" android:layout_height="60dp" android:layout_margin="8dp"/>
+
+                <!-- Avatars 17-20 -->
+                <ImageView android:tag="17" android:src="@drawable/avatar_17" android:layout_width="60dp" android:layout_height="60dp" android:layout_margin="8dp"/>
+                <ImageView android:tag="18" android:src="@drawable/avatar_18" android:layout_width="60dp" android:layout_height="60dp" android:layout_margin="8dp"/>
+                <ImageView android:tag="19" android:src="@drawable/avatar_19" android:layout_width="60dp" android:layout_height="60dp" android:layout_margin="8dp"/>
+                <ImageView android:tag="20" android:src="@drawable/avatar_20" android:layout_width="60dp" android:layout_height="60dp" android:layout_margin="8dp"/>
+
+                <!-- Avatars 21-24 -->
+                <ImageView android:tag="21" android:src="@drawable/avatar_21" android:layout_width="60dp" android:layout_height="60dp" android:layout_margin="8dp"/>
+                <ImageView android:tag="22" android:src="@drawable/avatar_22" android:layout_width="60dp" android:layout_height="60dp" android:layout_margin="8dp"/>
+                <ImageView android:tag="23" android:src="@drawable/avatar_23" android:layout_width="60dp" android:layout_height="60dp" android:layout_margin="8dp"/>
+                <ImageView android:tag="24" android:src="@drawable/avatar_24" android:layout_width="60dp" android:layout_height="60dp" android:layout_margin="8dp"/>
+
+                <!-- Avatar 25 -->
+                <ImageView android:tag="25" android:src="@drawable/avatar_25" android:layout_width="60dp" android:layout_height="60dp" android:layout_margin="8dp"/>
+
+            </GridLayout>
+        </ScrollView>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnFecharDialog"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="Cancelar"
+            android:textColor="@color/boteco_red"
+            android:textStyle="bold"
+            android:background="@android:color/transparent"
+            android:layout_marginTop="8dp"/>
+
+    </LinearLayout>
+</androidx.cardview.widget.CardView>
