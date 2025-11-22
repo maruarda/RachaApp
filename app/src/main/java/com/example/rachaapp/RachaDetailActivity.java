@@ -17,6 +17,11 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.rachaapp.adapter.DetalhesAdapter;
+import com.example.rachaapp.adapter.ParticipanteDialogAdapter;
+import com.example.rachaapp.adapter.ParticipantesAdapter;
+import com.example.rachaapp.model.Participante;
+
 import java.util.ArrayList;
 import java.util.List;
 

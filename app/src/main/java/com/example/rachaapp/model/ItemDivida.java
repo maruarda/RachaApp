@@ -1,4 +1,4 @@
-package com.example.rachaapp;
+package com.example.rachaapp.model;
 
 public class ItemDivida {
     private String nome;
