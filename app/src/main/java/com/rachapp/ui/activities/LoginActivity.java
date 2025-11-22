@@ -1,8 +1,10 @@
-package com.example.rachaapp;
+package com.rachapp.ui.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
+import com.rachapp.R;
+import com.rachapp.ui.dialogs.LoginDialog;
 
 public class LoginActivity extends AppCompatActivity {
     @Override

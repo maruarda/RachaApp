@@ -16,21 +16,16 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
 
-        <!-- Registered New Home Activity -->
-        <activity android:name=".HomeActivity" />
-
-        <activity android:name=".RachaDetailActivity" />
-        <activity android:name=".ResumoFinanceiroActivity" />
-
-        <activity android:name=".LoginActivity" android:exported="true">
+        <!-- Activities moved to .ui.activities package -->
+        <activity android:name="com.rachapp.ui.activities.LoginActivity" android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
-        <activity android:name=".CadastroActivity" />
-        <activity android:name=".MainActivity" />
+        <activity android:name="com.rachapp.ui.activities.CadastroActivity" />
+        <activity android:name="com.rachapp.ui.activities.HomeActivity" />
 
     </application>
 

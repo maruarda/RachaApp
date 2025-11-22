@@ -1,4 +1,4 @@
-package com.example.rachaapp.model;
+package com.rachapp.data.model;
 
 public class AmigoResponse {
     private Long idUsuario;

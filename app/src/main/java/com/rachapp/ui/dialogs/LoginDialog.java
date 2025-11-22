@@ -1,4 +1,4 @@
-package com.example.rachaapp;
+package com.rachapp.ui.dialogs;
 
 import android.app.Dialog;
 import android.content.Context;
@@ -11,8 +11,10 @@ import android.widget.EditText;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
 
-import com.example.rachaapp.model.Usuario;
-import com.example.rachaapp.network.RetrofitClient;
+import com.rachapp.R;
+import com.rachapp.data.model.Usuario;
+import com.rachapp.data.network.RetrofitClient;
+import com.rachapp.ui.activities.HomeActivity;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -61,12 +63,10 @@ public class LoginDialog extends Dialog {
                     Usuario user = response.body();
                     Toast.makeText(getContext(), "Bem-vindo, " + user.getNome() + "!", Toast.LENGTH_SHORT).show();
 
-                    // CHANGED: Navigate to HomeActivity instead of MainActivity
                     Intent intent = new Intent(getContext(), HomeActivity.class);
-
-                    // Pass User Data to Home Screen
                     intent.putExtra("USER_NAME", user.getNome());
                     intent.putExtra("USER_AVATAR", user.getAvatarId());
+                    intent.putExtra("USER_ID", user.getIdUsuario());
 
                     getContext().startActivity(intent);
                     dismiss();

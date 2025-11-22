@@ -1,4 +1,4 @@
-package com.example.rachaapp.adapter;
+package com.rachapp.ui.adapters;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -7,8 +7,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.rachaapp.R;
-import com.example.rachaapp.model.ResumoItem;
+import com.rachapp.R;
+import com.rachapp.data.model.ResumoItem;
 
 import java.util.List;
 

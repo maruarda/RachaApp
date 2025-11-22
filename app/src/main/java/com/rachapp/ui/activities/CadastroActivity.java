@@ -1,4 +1,4 @@
-package com.example.rachaapp;
+package com.rachapp.ui.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,8 +7,10 @@ import android.widget.ImageView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.rachaapp.model.Usuario;
-import com.example.rachaapp.network.RetrofitClient;
+import com.rachapp.R;
+import com.rachapp.data.model.Usuario;
+import com.rachapp.data.network.RetrofitClient;
+import com.rachapp.ui.dialogs.AvatarSelectionDialog;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -16,7 +18,6 @@ import retrofit2.Response;
 
 public class CadastroActivity extends AppCompatActivity {
 
-    // Default to Avatar 1 so the user always has a valid selection
     private int avatarSelecionadoId = 1;
 
     @Override
@@ -24,32 +25,22 @@ public class CadastroActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cadastro);
 
-        // LOGIC CHANGE: Instead of setupAvatares(), we just listen for clicks on the selected avatar card
         findViewById(R.id.cardAvatarSelecionado).setOnClickListener(v -> abrirSeletorAvatar());
-
         findViewById(R.id.btnFinalizarCadastro).setOnClickListener(v -> tentarCadastrar());
     }
 
-    // Opens the popup dialog with the 25 avatars
     private void abrirSeletorAvatar() {
         new AvatarSelectionDialog(this, selectedId -> {
-            // This runs when the user clicks an avatar in the dialog
             this.avatarSelecionadoId = selectedId;
             atualizarAvatarDisplay(selectedId);
         }).show();
     }
 
-    // Updates the big image on the registration screen
     private void atualizarAvatarDisplay(int avatarId) {
         ImageView imgDisplay = findViewById(R.id.imgAvatarDisplay);
-
-        // Dynamically find the drawable resource (avatar_1, avatar_2, etc.)
         String drawableName = "avatar_" + avatarId;
         int resId = getResources().getIdentifier(drawableName, "drawable", getPackageName());
-
-        if (resId != 0) {
-            imgDisplay.setImageResource(resId);
-        }
+        if (resId != 0) imgDisplay.setImageResource(resId);
     }
 
     private void tentarCadastrar() {
@@ -68,7 +59,6 @@ public class CadastroActivity extends AppCompatActivity {
             return;
         }
 
-        // Send the data to the backend
         Usuario novoUsuario = new Usuario(nome, email, senha, telefone, avatarSelecionadoId);
 
         Call<Usuario> call = RetrofitClient.getInstance().getApi().criarUsuario(novoUsuario);

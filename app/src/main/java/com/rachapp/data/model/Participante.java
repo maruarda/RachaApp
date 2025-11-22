@@ -1,4 +1,4 @@
-package com.example.rachaapp.model;
+package com.rachapp.data.model;
 
 import java.util.ArrayList;
 import java.util.List;
