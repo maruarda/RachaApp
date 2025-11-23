@@ -2,27 +2,35 @@
     <!-- Base application theme. -->
     <style name="Theme.RachaApp" parent="Theme.MaterialComponents.DayNight.NoActionBar">
 
-        <!-- Primary brand color (Botões, Cursor, Títulos Ativos) -->
+        <!-- Primary brand color -->
         <item name="colorPrimary">@color/boteco_red</item>
         <item name="colorPrimaryVariant">@color/beer_brown</item>
-        <item name="colorOnPrimary">@color/bar_background</item> <!-- Texto no botão primário -->
+        <item name="colorOnPrimary">@color/bar_background</item>
 
-        <!-- Secondary brand color (Botões Flutuantes, Seleção) -->
+        <!-- Secondary brand color -->
         <item name="colorSecondary">@color/pilsen_yellow</item>
         <item name="colorSecondaryVariant">@color/sun_orange</item>
         <item name="colorOnSecondary">@color/text_primary</item>
 
-        <!-- Status bar color (Barra de bateria/hora lá em cima) -->
+        <!-- Status bar color -->
         <item name="android:statusBarColor">@color/beer_brown</item>
 
-        <!-- Background padrão das telas -->
+        <!-- Background -->
         <item name="android:windowBackground">@color/bar_background</item>
 
-        <!-- Cores de Texto Padrão -->
+        <!-- Text Colors -->
         <item name="android:textColorPrimary">@color/text_primary</item>
         <item name="android:textColorSecondary">@color/text_secondary</item>
 
-        <!-- Fonte -->
+        <!-- Font -->
         <item name="android:fontFamily">sans-serif-medium</item>
+
     </style>
+
+    <!-- Imagens redondinhas -->
+    <style name="CircleImageStyle" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item>
+    </style>
+
 </resources>

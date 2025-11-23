@@ -4,23 +4,33 @@
     android:layout_height="wrap_content"
     android:orientation="horizontal"
     android:gravity="center_vertical"
-    android:padding="12dp"
-    android:background="@drawable/bg_item_dialog">
+    android:padding="8dp">
 
-    <CheckBox
-        android:id="@+id/cbParticipante"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:buttonTint="@color/text_primary" />
+    <!-- Avatar -->
+    <ImageView
+        android:id="@+id/imgPartAvatar"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/avatar_1"
+        android:background="@drawable/bg_circle_avatar"
+        android:padding="2dp"/>
 
+    <!-- Name -->
     <TextView
-        android:id="@+id/tvNomeDialog"
+        android:id="@+id/tvPartNome"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_marginStart="12dp"
+        android:text="Nome do Amigo"
+        android:textSize="16sp"
+        android:textColor="@color/text_primary"/>
+
+    <!-- Selection Checkbox -->
+    <CheckBox
+        android:id="@+id/cbPartSelect"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:fontFamily="sans-serif-medium"
-        android:text="Ana"
-        android:textColor="@color/text_primary"
-        android:textSize="16sp" />
+        android:buttonTint="@color/boteco_red"/>
 
 </LinearLayout>

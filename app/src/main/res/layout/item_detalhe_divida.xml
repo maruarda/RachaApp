@@ -1,32 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
-    android:paddingVertical="8dp"
-    android:paddingHorizontal="4dp"
-    android:background="@color/bar_background">
+    android:gravity="center_vertical"
+    android:paddingVertical="10dp">
 
-    <!-- Nome do Item (Ex: Carne) -->
-    <TextView
-        android:id="@+id/tvNomeItemDetalhe"
+    <!-- NEW: Payer Avatar -->
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/imgPayerAvatar"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/avatar_1"
+        android:scaleType="centerCrop"
+        android:layout_marginEnd="12dp"
+        app:shapeAppearanceOverlay="@style/CircleImageStyle"
+        app:strokeWidth="1dp"
+        app:strokeColor="@color/text_secondary"/>
+
+    <!-- Info Column -->
+    <LinearLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:text="Item"
-        android:textColor="@color/text_primary"
-        android:textSize="16sp"
-        android:fontFamily="sans-serif-medium"/>
+        android:orientation="vertical">
 
-    <!-- Valor da Parcela (Ex: 30.00) -->
+        <TextView
+            android:id="@+id/tvNomeItemDetalhe"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Item Name"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="@color/text_primary"/>
+
+        <TextView
+            android:id="@+id/tvQuemPagou"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Pago por: Alguém"
+            android:textSize="12sp"
+            android:layout_marginTop="2dp"
+            android:textColor="@color/text_secondary"/>
+    </LinearLayout>
+
+    <!-- Price -->
     <TextView
         android:id="@+id/tvValorItemDetalhe"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="R$ 0,00"
-        android:textColor="@color/text_primary"
         android:textStyle="bold"
-        android:textSize="16sp"
-        android:fontFamily="sans-serif-medium"/>
+        android:textColor="@color/text_primary"/>
 
 </LinearLayout>

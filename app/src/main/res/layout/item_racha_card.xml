@@ -1,27 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="12dp"
-    android:background="@drawable/bg_card_rounded"
-    android:elevation="4dp"
-    android:padding="24dp">
+    app:cardCornerRadius="12dp"
+    app:cardElevation="4dp"
+    app:cardBackgroundColor="@color/white">
 
-    <TextView
-        android:id="@+id/tvRachaTitulo"
-        android:layout_width="0dp"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        tools:text="Lanchonete"
-        android:textColor="@color/text_primary"
-        android:textSize="24sp"
-        android:fontFamily="sans-serif-medium"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:orientation="vertical"
+        android:padding="16dp">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:id="@+id/tvRachaNome"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Churrasco de Domingo"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="@color/text_primary"/>
+
+            <!-- Status Badge -->
+            <TextView
+                android:id="@+id/tvRachaStatus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ABERTO"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:textColor="#4CAF50"
+                android:background="#E8F5E9"
+                android:paddingHorizontal="8dp"
+                android:paddingVertical="4dp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="8dp">
+
+            <ImageView
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:src="@android:drawable/ic_menu_myplaces"
+                app:tint="@color/text_secondary"/>
+
+            <TextView
+                android:id="@+id/tvRachaLocal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Casa do João"
+                android:textColor="@color/text_secondary"
+                android:textSize="14sp"
+                android:layout_marginStart="4dp"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

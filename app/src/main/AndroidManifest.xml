@@ -1,6 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
 
@@ -16,7 +18,7 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
 
-        <!-- Activities moved to .ui.activities package -->
+        <!-- Entry Point -->
         <activity android:name="com.rachapp.ui.activities.LoginActivity" android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -24,9 +26,14 @@
             </intent-filter>
         </activity>
 
+        <!-- Other Activities -->
         <activity android:name="com.rachapp.ui.activities.CadastroActivity" />
         <activity android:name="com.rachapp.ui.activities.HomeActivity" />
-
+        <activity android:name="com.rachapp.ui.activities.ResumoFinanceiroActivity" />
+        <activity android:name="com.rachapp.ui.activities.CriarRachaActivity" />
+        <activity android:name="com.rachapp.ui.activities.RachaDetailActivity" />
+        <activity android:name="com.rachapp.ui.activities.MeusRachasActivity" />
+        
     </application>
 
 </manifest>

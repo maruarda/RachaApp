@@ -13,7 +13,7 @@
         android:orientation="vertical"
         android:padding="20dp">
 
-        <!-- Cabeçalho com Nome do Usuário -->
+        <!-- Header -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -21,14 +21,24 @@
             android:gravity="center_vertical"
             android:layout_marginBottom="24dp">
 
-            <ImageView
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:background="@drawable/bg_circle_avatar"/>
+            <androidx.cardview.widget.CardView
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                app:cardCornerRadius="35dp"
+                app:cardBackgroundColor="@android:color/transparent"
+                app:cardElevation="0dp">
+                <ImageView
+                    android:id="@+id/imgPerfilResumo"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/avatar_1"
+                    android:scaleType="centerCrop"/>
+            </androidx.cardview.widget.CardView>
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:orientation="vertical"
                 android:layout_marginStart="16dp">
 
@@ -39,26 +49,42 @@
                     android:textColor="@color/text_secondary"
                     android:textSize="16sp"/>
 
-                <TextView
-                    android:id="@+id/tvNomeUsuarioLogado"
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Meu Perfil"
-                    android:textColor="@color/text_primary"
-                    android:textSize="24sp"
-                    android:textStyle="bold"/>
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:id="@+id/tvNomeUsuarioLogado"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Meu Perfil"
+                        android:textColor="@color/text_primary"
+                        android:textSize="22sp"
+                        android:textStyle="bold"/>
+
+                    <!-- Edit Button -->
+                    <ImageView
+                        android:id="@+id/btnEditarPerfil"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@android:drawable/ic_menu_edit"
+                        app:tint="@color/text_secondary"
+                        android:layout_marginStart="8dp"
+                        android:clickable="true"
+                        android:focusable="true"/>
+                </LinearLayout>
             </LinearLayout>
         </LinearLayout>
 
-        <!-- BLOCO 1: A RECEBER (VERDE) -->
+        <!-- TO RECEIVE (GREEN) -->
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/bg_card_receber"
             android:padding="20dp"
-            android:elevation="0dp"
             android:layout_marginBottom="20dp">
-            <!-- Usei o drawable criado acima -->
 
             <TextView
                 android:id="@+id/lblReceber"
@@ -70,7 +96,6 @@
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"/>
-            <!-- Mudei a cor do título para um verde escuro sólido para ler melhor -->
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvReceber"
@@ -78,9 +103,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:nestedScrollingEnabled="false"
-                app:layout_constraintTop_toBottomOf="@id/lblReceber"
-                tools:listitem="@layout/item_resumo_financeiro"
-                tools:itemCount="2"/>
+                app:layout_constraintTop_toBottomOf="@id/lblReceber"/>
 
             <View
                 android:id="@+id/dividerRec"
@@ -99,7 +122,6 @@
                 android:textColor="#15492D"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/dividerRec"/>
-            <!-- Mudei para verde escuro sólido -->
 
             <TextView
                 android:id="@+id/tvTotalReceber"
@@ -115,14 +137,13 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <!-- BLOCO 2: A PAGAR (VERMELHO) -->
+        <!-- TO PAY (RED) -->
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/bg_card_pagar"
             android:padding="20dp"
-            android:elevation="0dp">
-            <!-- Usei o drawable vermelho criado acima -->
+            android:layout_marginBottom="32dp">
 
             <TextView
                 android:id="@+id/lblPagar"
@@ -134,7 +155,6 @@
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"/>
-            <!-- Cor Vermelho Escuro Sólido -->
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvPagar"
@@ -142,9 +162,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:nestedScrollingEnabled="false"
-                app:layout_constraintTop_toBottomOf="@id/lblPagar"
-                tools:listitem="@layout/item_resumo_financeiro"
-                tools:itemCount="2"/>
+                app:layout_constraintTop_toBottomOf="@id/lblPagar"/>
 
             <View
                 android:id="@+id/dividerPag"
@@ -177,6 +195,17 @@
                 app:layout_constraintTop_toBottomOf="@id/dividerPag"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <!-- Logout Button -->
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnLogout"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="Sair da Conta"
+            android:textColor="@color/boteco_red"
+            android:textStyle="bold"
+            android:background="@drawable/bg_card_rounded"
+            android:layout_marginBottom="16dp"/>
 
     </LinearLayout>
 </androidx.core.widget.NestedScrollView>

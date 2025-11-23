@@ -4,32 +4,56 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/bar_background">
+    android:background="@color/bar_background"
+    android:padding="16dp">
 
-    <!-- LINHA CORRIGIDA ACIMA: xmlns:app="..." -->
+    <!-- Menu Button (Top Right) -->
+    <ImageView
+        android:id="@+id/btnRachaOptions"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:src="@android:drawable/ic_menu_more"
+        app:tint="@color/boteco_red"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:clickable="true"
+        android:focusable="true"
+        android:padding="4dp"/>
 
     <TextView
         android:id="@+id/tvDetalheTitulo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Churrasco"
-        android:textSize="32sp"
+        android:text="Nome do Racha"
+        android:textSize="28sp"
         android:textStyle="bold"
         android:textColor="@color/text_primary"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="8dp"
         android:layout_centerHorizontal="true"/>
+
+    <!-- Status Label -->
+    <TextView
+        android:id="@+id/tvDetalheStatus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ABERTO"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        android:textColor="#4CAF50"
+        android:layout_below="@id/tvDetalheTitulo"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="4dp"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvDetalhesParticipantes"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/tvDetalheTitulo"
+        android:layout_below="@id/tvDetalheStatus"
         android:layout_above="@id/containerBottom"
-        android:padding="16dp"
         android:clipToPadding="false"
         android:layout_marginTop="20dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        tools:listitem="@layout/item_participante_saldo"/>
+        tools:listitem="@layout/item_amigo_horizontal"/>
 
     <LinearLayout
         android:id="@+id/containerBottom"
@@ -58,7 +82,7 @@
                 android:id="@+id/tvTotalConta"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="R$ 150,00"
+                android:text="R$ 0,00"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 android:textColor="@color/text_primary"/>
@@ -70,7 +94,7 @@
             android:layout_height="55dp"
             android:text="+ Adicionar Item / Dividir"
             android:background="@drawable/bg_button_rounded"
-            android:textColor="@color/white_replacement"
+            android:textColor="@color/white"
             android:textAllCaps="false"
             android:textSize="16sp"
             android:textStyle="bold"/>
