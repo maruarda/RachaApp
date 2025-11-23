@@ -35,9 +35,9 @@ public class RachaDetailActivity extends AppCompatActivity {
     private RecyclerView rvItens;
     private TextView tvTotal, tvStatus;
     private View btnAdd;
-    private Racha currentRacha; // Store current racha object
+    private Racha currentRacha;
 
-    private boolean showingBalances = false; // Tracks which tab is active
+    private boolean showingBalances = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,8 +69,6 @@ public class RachaDetailActivity extends AppCompatActivity {
 
     private void showOptionsMenu(View v) {
         PopupMenu popup = new PopupMenu(this, v);
-
-        // Dynamic Menu Options
         if (showingBalances) {
             popup.getMenu().add("Ver Itens");
         } else {
@@ -78,7 +76,7 @@ public class RachaDetailActivity extends AppCompatActivity {
         }
 
         popup.getMenu().add("Fechar Racha");
-        popup.getMenu().add("Excluir Racha"); // Simplified warning text
+        popup.getMenu().add("Excluir Racha");
 
         popup.setOnMenuItemClickListener(item -> {
             String title = item.getTitle().toString();
@@ -98,9 +96,8 @@ public class RachaDetailActivity extends AppCompatActivity {
         popup.show();
     }
 
-    // 1. VIEW: Items List (Default)
     private void carregarDetalhes() {
-        showingBalances = false; // Reset state
+        showingBalances = false;
         Call<Racha> call = RetrofitClient.getInstance().getApi().getRachaDetalhes(rachaId);
 
         call.enqueue(new Callback<Racha>() {
@@ -123,7 +120,6 @@ public class RachaDetailActivity extends AppCompatActivity {
                     }
 
                     if (currentRacha.getItens() != null) {
-                        // UPDATE: Pass the listener for Long Clicks
                         ItemRachaAdapter adapter = new ItemRachaAdapter(currentRacha.getItens(), (item, view) -> showItemOptions(item, view));
                         rvItens.setAdapter(adapter);
                         calculateTotal(currentRacha.getItens());
@@ -139,7 +135,6 @@ public class RachaDetailActivity extends AppCompatActivity {
         });
     }
 
-    // 2. VIEW: Balances List
     private void carregarSaldos() {
         Call<List<BalanceDTO>> call = RetrofitClient.getInstance().getApi().getRachaBalances(rachaId);
         call.enqueue(new Callback<List<BalanceDTO>>() {
@@ -148,13 +143,21 @@ public class RachaDetailActivity extends AppCompatActivity {
                 if (response.isSuccessful() && response.body() != null) {
                     SaldoAdapter adapter = new SaldoAdapter(response.body(), balance -> {
 
-                        // FIXED: Added 'balance.getAvatarId()' to the constructor
+                        boolean isReceiving = balance.getSaldo() < 0 && balance.getUserId() != currentUserId;
+                        double amount = Math.abs(balance.getSaldo());
+
+                        // FIXED: Use RachaDetailActivity.this::carregarSaldos to fix scope error
                         new DetalhesConsumoDialog(
                                 RachaDetailActivity.this,
                                 balance.getNome(),
-                                balance.getAvatarId() != null ? balance.getAvatarId() : 1, // The fix
+                                balance.getAvatarId() != null ? balance.getAvatarId() : 1,
                                 balance.getItensConsumidos(),
-                                balance.getTotalConsumido() != null ? balance.getTotalConsumido() : 0.0
+                                amount,
+                                currentUserId,
+                                balance.getUserId(),
+                                rachaId,
+                                isReceiving,
+                                RachaDetailActivity.this::carregarSaldos // Explicit scope fixes "cannot find symbol"
                         ).show();
                     });
                     rvItens.setAdapter(adapter);
@@ -167,20 +170,16 @@ public class RachaDetailActivity extends AppCompatActivity {
         });
     }
 
-    // Item Options (Edit/Delete)
     private void showItemOptions(ItemRacha item, View view) {
         if (currentRacha != null && "FECHADO".equals(currentRacha.getStatus())) {
-            Toast.makeText(this, "Racha fechado, não é possível editar.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Racha fechado.", Toast.LENGTH_SHORT).show();
             return;
         }
-
         PopupMenu popup = new PopupMenu(this, view);
         popup.getMenu().add("Editar");
         popup.getMenu().add("Excluir Item");
-
         popup.setOnMenuItemClickListener(menuItem -> {
             if (menuItem.getTitle().equals("Editar")) {
-                // Pass currentUserId to fetch friends list
                 new EditarItemDialog(this, item, currentUserId, this::carregarDetalhes).show();
             } else if (menuItem.getTitle().equals("Excluir Item")) {
                 deleteItem(item.getIdItemRacha());
@@ -204,7 +203,6 @@ public class RachaDetailActivity extends AppCompatActivity {
         });
     }
 
-    // Actions
     private void fecharRacha() {
         Call<Racha> call = RetrofitClient.getInstance().getApi().fecharRacha(rachaId);
         call.enqueue(new Callback<Racha>() {

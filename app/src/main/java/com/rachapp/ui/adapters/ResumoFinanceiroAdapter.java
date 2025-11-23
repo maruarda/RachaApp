@@ -13,33 +13,46 @@ import java.util.List;
 
 public class ResumoFinanceiroAdapter extends RecyclerView.Adapter<ResumoFinanceiroAdapter.ViewHolder> {
 
+    // Updated Model to hold IDs for payment
     public static class FinancialItem {
         public String personName;
-        public String rachaContext;
-        public String value;
+        public String description; // "Churrasco - Picanha"
+        public String valueStr;
+        public double rawValue;    // For the dialog logic
         public int avatarId;
+        public Long userId;        // Debtor/Creditor ID
+        public Long rachaId;
 
-        public FinancialItem(String personName, String rachaContext, String value, int avatarId) {
+        public FinancialItem(String personName, String description, String valueStr, double rawValue, int avatarId, Long userId, Long rachaId) {
             this.personName = personName;
-            this.rachaContext = rachaContext;
-            this.value = value;
+            this.description = description;
+            this.valueStr = valueStr;
+            this.rawValue = rawValue;
             this.avatarId = avatarId;
+            this.userId = userId;
+            this.rachaId = rachaId;
         }
     }
 
     private final List<FinancialItem> items;
+    private final OnItemClickListener listener;
     private Context context;
 
-    public ResumoFinanceiroAdapter(List<FinancialItem> items) {
+    // Interface for clicks
+    public interface OnItemClickListener {
+        void onItemClick(FinancialItem item);
+    }
+
+    public ResumoFinanceiroAdapter(List<FinancialItem> items, OnItemClickListener listener) {
         this.items = items;
+        this.listener = listener;
     }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        this.context = parent.getContext();
-        View view = LayoutInflater.from(context)
-                .inflate(R.layout.item_resumo_financeiro, parent, false);
+        context = parent.getContext();
+        View view = LayoutInflater.from(context).inflate(R.layout.item_resumo_financeiro, parent, false);
         return new ViewHolder(view);
     }
 
@@ -48,30 +61,29 @@ public class ResumoFinanceiroAdapter extends RecyclerView.Adapter<ResumoFinancei
         FinancialItem item = items.get(position);
 
         holder.tvPerson.setText(item.personName);
-        holder.tvContext.setText(item.rachaContext);
-        holder.tvValue.setText(item.value);
+        holder.tvDesc.setText(item.description);
+        holder.tvValue.setText(item.valueStr);
 
-        String drawableName = "avatar_" + item.avatarId;
-        int resId = context.getResources().getIdentifier(drawableName, "drawable", context.getPackageName());
+        // Set Avatar
+        int safeAvatarId = item.avatarId > 0 ? item.avatarId : 1;
+        int resId = context.getResources().getIdentifier("avatar_" + safeAvatarId, "drawable", context.getPackageName());
+        if (resId != 0) holder.imgAvatar.setImageResource(resId);
 
-        if (resId != 0) {
-            holder.imgAvatar.setImageResource(resId);
-        } else {
-            holder.imgAvatar.setImageResource(R.drawable.avatar_1);
-        }
+        // Click
+        holder.itemView.setOnClickListener(v -> listener.onItemClick(item));
     }
 
     @Override
     public int getItemCount() { return items.size(); }
 
     static class ViewHolder extends RecyclerView.ViewHolder {
-        TextView tvPerson, tvContext, tvValue;
+        TextView tvPerson, tvDesc, tvValue;
         ImageView imgAvatar;
 
         public ViewHolder(View itemView) {
             super(itemView);
             tvPerson = itemView.findViewById(R.id.tvResumoPessoa);
-            tvContext = itemView.findViewById(R.id.tvResumoRacha);
+            tvDesc = itemView.findViewById(R.id.tvResumoRacha);
             tvValue = itemView.findViewById(R.id.tvResumoValor);
             imgAvatar = itemView.findViewById(R.id.imgResumoAvatar);
         }

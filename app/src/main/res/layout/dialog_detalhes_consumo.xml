@@ -16,7 +16,6 @@
         android:orientation="horizontal"
         app:layout_constraintTop_toTopOf="parent">
 
-        <!-- UPDATED: Circular Crop -->
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/imgAvatarDetalhe"
             android:layout_width="50dp"
@@ -112,18 +111,34 @@
             android:textStyle="bold" />
     </LinearLayout>
 
+    <!-- Confirm Payment Button -->
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnConfirmarRecebimento"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/bg_button_rounded"
+        android:backgroundTint="#4CAF50"
+        android:text="Confirmar Recebimento"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@id/footerTotal" />
+
     <!-- Close Button -->
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnFecharDetalhe"
         android:layout_width="match_parent"
         android:layout_height="45dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="12dp"
         android:background="@drawable/bg_button_rounded"
         android:text="Fechar"
         android:textAllCaps="false"
         android:textColor="@color/bar_background"
         android:textSize="16sp"
         android:textStyle="bold"
-        app:layout_constraintTop_toBottomOf="@id/footerTotal" />
+        app:layout_constraintTop_toBottomOf="@id/btnConfirmarRecebimento" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

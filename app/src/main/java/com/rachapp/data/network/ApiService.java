@@ -4,6 +4,7 @@ import com.rachapp.data.model.BalanceDTO;
 import com.rachapp.data.model.Devedor;
 import com.rachapp.data.model.ItemCreationDTO;
 import com.rachapp.data.model.ItemRacha;
+import com.rachapp.data.model.PagamentoDTO;
 import com.rachapp.data.model.Racha;
 import com.rachapp.data.model.ResumoDTO;
 import com.rachapp.data.model.Usuario;
@@ -70,4 +71,7 @@ public interface ApiService {
 
     @GET("api/rachas/{id}/balances")
     Call<List<BalanceDTO>> getRachaBalances(@Path("id") Long rachaId);
+
+    @POST("api/pagamentos")
+    Call<ResponseBody> confirmarPagamento(@Body PagamentoDTO pagamento);
 }

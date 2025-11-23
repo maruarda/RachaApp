@@ -10,12 +10,16 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.rachapp.R;
+import com.rachapp.data.model.ItemRacha;
 import com.rachapp.data.model.ResumoDTO;
 import com.rachapp.data.model.ResumoItemDTO;
+import com.rachapp.data.model.Usuario;
 import com.rachapp.data.network.RetrofitClient;
 import com.rachapp.ui.adapters.ResumoFinanceiroAdapter;
+import com.rachapp.ui.dialogs.DetalhesConsumoDialog;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -24,19 +28,20 @@ import retrofit2.Response;
 public class ResumoFinanceiroActivity extends AppCompatActivity {
 
     private long currentUserId;
+    private String currentUserName;
+    private int currentUserAvatar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_resumo_financeiro);
 
-        String userName = getIntent().getStringExtra("USER_NAME");
-        int avatarId = getIntent().getIntExtra("USER_AVATAR", 1);
+        currentUserName = getIntent().getStringExtra("USER_NAME");
+        currentUserAvatar = getIntent().getIntExtra("USER_AVATAR", 1);
         currentUserId = getIntent().getLongExtra("USER_ID", -1);
 
-        setupHeader(userName, avatarId);
+        setupHeader(currentUserName, currentUserAvatar);
 
-        // Initialize with empty data while loading
         setupLists(null);
 
         if (currentUserId != -1) {
@@ -68,8 +73,6 @@ public class ResumoFinanceiroActivity extends AppCompatActivity {
             public void onResponse(Call<ResumoDTO> call, Response<ResumoDTO> response) {
                 if (response.isSuccessful() && response.body() != null) {
                     setupLists(response.body());
-                } else {
-                    Toast.makeText(ResumoFinanceiroActivity.this, "Erro ao carregar resumo", Toast.LENGTH_SHORT).show();
                 }
             }
 
@@ -90,22 +93,55 @@ public class ResumoFinanceiroActivity extends AppCompatActivity {
         rvPagar.setLayoutManager(new LinearLayoutManager(this));
 
         if (data == null) {
-            // Show empty state
             tvTotalReceber.setText("R$ 0,00");
             tvTotalPagar.setText("R$ 0,00");
             return;
         }
 
-        // Convert Backend DTOs to Adapter Items
         List<ResumoFinanceiroAdapter.FinancialItem> itemsReceber = convertDtoToAdapter(data.getListaReceber());
+        ResumoFinanceiroAdapter adapterReceber = new ResumoFinanceiroAdapter(itemsReceber, item -> {
+            openDetailDialog(item, true);
+        });
+        rvReceber.setAdapter(adapterReceber);
+
         List<ResumoFinanceiroAdapter.FinancialItem> itemsPagar = convertDtoToAdapter(data.getListaPagar());
+        ResumoFinanceiroAdapter adapterPagar = new ResumoFinanceiroAdapter(itemsPagar, item -> {
+            openDetailDialog(item, false);
+        });
+        rvPagar.setAdapter(adapterPagar);
 
-        rvReceber.setAdapter(new ResumoFinanceiroAdapter(itemsReceber));
-        rvPagar.setAdapter(new ResumoFinanceiroAdapter(itemsPagar));
-
-        // Format currency nicely
         tvTotalReceber.setText(String.format("R$ %.2f", data.getTotalA_Receber()));
         tvTotalPagar.setText(String.format("R$ %.2f", data.getTotalA_Pagar()));
+    }
+
+    private void openDetailDialog(ResumoFinanceiroAdapter.FinancialItem item, boolean isReceiving) {
+        Usuario payerUser = new Usuario();
+        if (isReceiving) {
+            payerUser.setNome(currentUserName + " (Eu)");
+            payerUser.setAvatarId(currentUserAvatar);
+        } else {
+            payerUser.setNome(item.personName);
+            payerUser.setAvatarId(item.avatarId);
+        }
+
+        ItemRacha displayItem = new ItemRacha(item.description, item.rawValue, item.rachaId, payerUser);
+        List<ItemRacha> displayList = Collections.singletonList(displayItem);
+
+        Long myId = currentUserId;
+        Long otherId = item.userId;
+
+        new DetalhesConsumoDialog(
+                this,
+                item.personName,
+                item.avatarId,
+                displayList,
+                item.rawValue,
+                myId,
+                otherId,
+                item.rachaId,
+                isReceiving,
+                this::carregarDadosFinanceiros // PASSING CALLBACK TO REFRESH
+        ).show();
     }
 
     private List<ResumoFinanceiroAdapter.FinancialItem> convertDtoToAdapter(List<ResumoItemDTO> dtos) {
@@ -116,7 +152,10 @@ public class ResumoFinanceiroActivity extends AppCompatActivity {
                         dto.getNomePessoa(),
                         "Ref: " + dto.getNomeRacha(),
                         String.format("R$ %.2f", dto.getValor()),
-                        dto.getAvatarId() != null ? dto.getAvatarId() : 1
+                        dto.getValor(),
+                        dto.getAvatarId() != null ? dto.getAvatarId() : 1,
+                        dto.getUserId(),
+                        dto.getRachaId()
                 ));
             }
         }

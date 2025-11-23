@@ -10,10 +10,10 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.rachapp.R;
+import com.rachapp.ui.adapters.AmigosAdapter;
 import com.rachapp.data.model.ResumoDTO;
 import com.rachapp.data.model.Usuario;
 import com.rachapp.data.network.RetrofitClient;
-import com.rachapp.ui.adapters.AmigosAdapter;
 import com.rachapp.ui.dialogs.SearchFriendDialog;
 
 import java.util.List;
@@ -33,34 +33,26 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        // 1. Capture Data from Login
+        // 1. Capture Data (Done once)
         currentUserName = getIntent().getStringExtra("USER_NAME");
         currentUserAvatar = getIntent().getIntExtra("USER_AVATAR", 1);
         currentUserId = getIntent().getLongExtra("USER_ID", -1);
 
         setupHeader(currentUserName, currentUserAvatar);
 
-        // 2. Setup Friends List
         rvAmigos = findViewById(R.id.rvAmigosHome);
         rvAmigos.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
 
-        // 3. Load Data from Backend
-        if (currentUserId != -1) {
-            carregarAmigos();
-            carregarResumo(); // MISSING IN YOUR CODE: Loads "A Receber/A Pagar"
-        }
-
-        // 4. Button: Add Friend
+        // 4. Button Listeners
         findViewById(R.id.btnAddAmigo).setOnClickListener(v -> {
             if (currentUserId != -1) {
+                // Passing carregarAmigos as callback so list refreshes immediately after adding
                 new SearchFriendDialog(this, currentUserId, this::carregarAmigos).show();
             }
         });
 
-        // 5. Button: Profile Picture (Go to Financial Summary)
         findViewById(R.id.imgPerfilHome).setOnClickListener(v -> openProfile());
 
-        // 6. Button: Create New Racha
         findViewById(R.id.btnCriarNovoRacha).setOnClickListener(v -> {
             if (currentUserId != -1) {
                 Intent intent = new Intent(this, CriarRachaActivity.class);
@@ -71,12 +63,29 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
-        // 7. Button: View Rachas
         findViewById(R.id.btnMeusRachas).setOnClickListener(v -> {
             Intent intent = new Intent(this, MeusRachasActivity.class);
             intent.putExtra("USER_ID", currentUserId);
             startActivity(intent);
         });
+    }
+
+    // FIXED: Load data here so it refreshes every time you return to this screen
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (currentUserId != -1) {
+            carregarAmigos();
+            carregarResumo();
+        }
+    }
+
+    private void openProfile() {
+        Intent intent = new Intent(this, ResumoFinanceiroActivity.class);
+        intent.putExtra("USER_NAME", currentUserName);
+        intent.putExtra("USER_AVATAR", currentUserAvatar);
+        intent.putExtra("USER_ID", currentUserId);
+        startActivity(intent);
     }
 
     private void setupHeader(String name, int avatarId) {
@@ -92,14 +101,6 @@ public class HomeActivity extends AppCompatActivity {
         if (resId != 0) imgPerfil.setImageResource(resId);
     }
 
-    private void openProfile() {
-        Intent intent = new Intent(this, ResumoFinanceiroActivity.class);
-        intent.putExtra("USER_NAME", currentUserName);
-        intent.putExtra("USER_AVATAR", currentUserAvatar);
-        intent.putExtra("USER_ID", currentUserId);
-        startActivity(intent);
-    }
-
     private void carregarAmigos() {
         Call<List<Usuario>> call = RetrofitClient.getInstance().getApi().getAmigos(currentUserId);
         call.enqueue(new Callback<List<Usuario>>() {
@@ -112,7 +113,7 @@ public class HomeActivity extends AppCompatActivity {
             }
             @Override
             public void onFailure(Call<List<Usuario>> call, Throwable t) {
-                // Fail silently or log
+                // Fail silently
             }
         });
     }
@@ -128,7 +129,6 @@ public class HomeActivity extends AppCompatActivity {
                     TextView tvReceber = findViewById(R.id.tvTotalReceber);
                     TextView tvPagar = findViewById(R.id.tvTotalPagar);
 
-                    // Safely handle nulls just in case
                     double valReceber = resumo.getTotalA_Receber() != null ? resumo.getTotalA_Receber() : 0.0;
                     double valPagar = resumo.getTotalA_Pagar() != null ? resumo.getTotalA_Pagar() : 0.0;
 
@@ -139,7 +139,7 @@ public class HomeActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<ResumoDTO> call, Throwable t) {
-                // Fail silently on dashboard
+                // Fail silently
             }
         });
     }
